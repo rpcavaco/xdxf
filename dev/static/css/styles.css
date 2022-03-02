@@ -399,6 +399,18 @@ option {
 	margin-right: 3px;
 }
 
+.entry {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end; /* to pull content to the left */
+}
+
+.entry label {
+	margin-top: 6px;
+	margin-right: 22px;
+}
+
 .attention-select {
 	width: fit-content; 
 	padding: 0.25em 0.5em;
@@ -415,10 +427,11 @@ option {
 }
 
 #sel_cartografias {
-	width: 300px;
+	width: 268px;
 }
 
 #btn_genextract {
 	margin-top: 20px;
-	width: 320px;
+	width: 160px;
+	height: 40px;
 }
