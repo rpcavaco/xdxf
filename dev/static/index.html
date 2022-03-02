@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Dados CAD</title>
+		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+		<link href='shortcut icon' rel='img/fcmp.png' />
+		<link href='media/fcmp.png' rel='icon' type='image/png' />
+	
+		<link rel="stylesheet" href="css/msgsdiv.css">
+		<link rel="stylesheet" href="css/styles.css">
+
+		<link rel="stylesheet" href="css/leafletall.css">
+
+		<!-- Especificos deste mapa -->
+		<script src="js/mapsetup.js"></script>
+		<!--        -->
+		
+		<script src="js/mapapp.js"></script>
+		<script src="js/leafletall.js"></script>
+		<!-- Final requisitos mapa -->
+
+		<!-- Estilo mapa -->
+		<style>
+			#maparea {
+				width: 820px;
+				height: 400px;
+				background-color: #c0c0c0;
+			}
+		</style>
+		<!-- Final estilo mapa -->
+
+		<script>
+			// Adicionar trailing slash caso não exista.
+			//   Caso contrário, todos os url tem de ser prefixados com a diretoria virtual da app.
+			if (!/\/$/.test(window.location.href)) {
+				window.location.href = window.location.href + "/";
+			}	
+			
+			// ativar banner dev
+			if (/dev[/]?$/.test(window.location.href)) {
+				const hw = document.getElementsByTagName("html");
+				//console.log(hw);
+				if (hw.length > 0) {
+					hw[0].classList.add("devbgr");
+				}
+			}
+
+		</script>
+	</head>
+	<body>
+
+		<div id="msgsdiv" style="display: none;">
+		</div>
+
+		<header>
+			<img id="logo" src="media/logocmpinv.png" />
+			Acesso a cartografia em formato CAD
+		</header>
+
+		<main>
+			<nav>
+
+				<ul>
+					<li id="li_mainsect">Início</li>
+					<li id="li_extractdxf">Extração DXF</li>
+				</ul>
+
+				<div id="ctrl_atividade" class="boxed tobottom">
+					<h3>Atividade segundo plano</h3>
+					<diV>
+						<div>
+							Estado
+							<br />
+							<button id="btn_chk_estadobkgrd">Verificar</button>
+						</div>
+						<div>
+							<button id="sem_estadobkgrd" class="semaforo justright">Sem tarefas</button>
+						</div>		
+					</div>			
+				</div>
+
+			</nav>
+
+			<section id="mainsect">
+
+				<h1>Acesso a bases cartográficas em formato CAD</h1>
+				
+				<p class="salient">Desde Julho de 2021 que a bases cartográficas do município deixaram de ser mantidas em formatos CAD, passando a ser mantidas em formatos de Sistema de Informação Geográfica (SIG).</p>
+				<p class="salient">Esta aplicação permite gerar extratos de cartografia atualizada em formato CAD interoperável.</p>
+
+				<h2>Geração de extratos de cartografia</h2>
+				<p>Como a cartografia de referência do município é agora mantida em SIG, os utilizadores de software CAD devem usar esta aplicação para obter extratos atualizados, em ficheiro, que podem usar como referência externa (<i>Xref</i> em AutoCAD).</p>
+				<p>Uma vez que a cartografia está em permanente atualização, podendo surgir alterações a qualquer momento, os utilizadores deverão:</p>
+				<ul>
+					<li>vir aqui obter novo extrato sempre que iniciam uma nova tarefa;</li>
+					<li>extrair apenas a área do concelho efetivamente necessária;</li>
+					<li>evitar manter extratos obtidos nesta aplicação para referência futura, uma vez que podem tornar-se desatualizados.</li>
+				</ul>
+				<p>Neste momento, apenas está disponível a opção de extração para ficheiro DXF.</p>
+				<p>Para esse efeito, usar a opção <strong><i><a href="#" class="a_extractdxf">Extração DXF</a></i></strong> no menu da esquerda.</p>
+
+
+				<div class="footer">Fevereiro 2022</div>
+
+			</section>
+
+			<section id="extractdxf" style="display: none;">
+
+				<h1>Extração de cartografia para ficheiro em formato <i>DXF</i>.</h1>
+				
+				<p class="salient">Geração de ficheiro DXF contendo extrato da cartografia vetorial do concelho do Porto</p>
+
+				<p>Marque uma área rectangular no mapa e obtenha um extrato da cartografia digital correspondente a essa área</p>
+
+				<p>Proceda da seguinte forma:</p>
+				<ol>
+					<li>pique e arraste o rato sobre o mapa, para marcar o rectângulo da área que pretende extrair.</li>
+					<li>escolha a cartografia de base que pretende extrair</li>
+					<li>para finalizar, carregue no botão 'Extrair'</li>
+				</ol>
+
+				<!-- Widget mapa --> 
+				<div id="maparea"></div> 
+				<!-- Final widget mapa -->
+
+				<p>
+					<label for="sel_cartografias"> Cartografia disponível </label>
+					<div class="attention-select">
+						<select id="sel_cartografias">
+							<option>Cartografia 2014</option>
+							<option>Cartografia 1996 (atualizada a 2021)</option>
+						</select>
+					</div>
+				</p>
+
+				<p>
+					<button id="btn_genextract">Extrair</button>
+				</p>
+
+
+				<div class="footer">DMSI / DMGAI / SIG 2022</div>
+
+			</section>	
+
+		</main>
+
+		<script src="js/basics.js"></script>
+		<script src="js/msgsdiv_ctrlr.js"></script>
+		<script src="js/init.js"></script>
+
+		<!-- Inicialização mapa --> 
+		<script>
+			mapinit(); 
+		</script> 
+		<!-- Final inicialização mapa -->		
+
+	</body>
+</html>  

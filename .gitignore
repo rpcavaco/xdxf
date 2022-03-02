@@ -1,0 +1,7 @@
+*.png
+*.7z
+*.bak
+*.aprx
+dev/static/css/lixo
+dev/static/media
+
