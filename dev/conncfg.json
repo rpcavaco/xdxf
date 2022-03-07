@@ -2,5 +2,8 @@
 	"user": "sup_ap",
 	"password": "czNncDRydDRzNXAxcCMyMDE3",
 	"host": "10.10.11.67",
-	"database": "bdgc_editor"
+	"database": "bdgc_editor",
+	"application_name": "xdxf",
+	"min_size": 1,
+	"max_size": 4
 }

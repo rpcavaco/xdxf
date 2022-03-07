@@ -142,6 +142,15 @@ def create_app():
 		ret = await mmgr.sendRunTaskRequestToWorkers("background_worker.DryRunTask", uuid)
 		return { "res": "OK", "ret": ret }
 
+	@fapp.get("/gendxf")
+	async def gendxf(request: Request, uuid: str, lat1: float, lng1: float, lat2: float, lng2: float, tipo: str):
+		ensure_enough_workers_running()
+		ret = await mmgr.sendRunTaskRequestToWorkers("background_tasks.GenDXF", uuid, args={
+			"quatro_cantos": [lat1, lng1, lat2, lng2],
+			"tipo_cart": tipo
+		})
+		return { "res": "OK", "ret": ret }
+
 	# @fapp.websocket("/ws")
 	# async def websocket_endpoint(websocket: WebSocket):
 	# 	await bckmgr.connectws(websocket)

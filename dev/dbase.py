@@ -174,13 +174,24 @@ class DBPool(object):
 				logger.exception("Erro em test")
 		return ret
 	
-	async def openup(self):		
-		self.pool = await asyncpg.create_pool(**self.cfgdict)
+	async def openup(self):	
+
+		cfgdict = {}
+		for cfgkey in self.cfgdict.keys():
+			if cfgkey == 'application_name':
+				cfgdict["server_settings"] = {"application_name": self.cfgdict[cfgkey] }
+			else:
+				cfgdict[cfgkey] = self.cfgdict[cfgkey]
+
+		self.pool = await asyncpg.create_pool(**cfgdict)
 		ret = await self.test()
 		return ret
 		
 	async def teardown(self):	
 		if self.isOpened():	
 			await self.pool.close()
+
+	def sqlalchemy_connstr(self):
+		return f"postgresql://{self.cfgdict['user']}:{self.cfgdict['password']}@{self.cfgdict['host']}/{self.cfgdict['database']}"
 		
 					

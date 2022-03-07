@@ -12,6 +12,8 @@ WORKER_PIDFILE_PREFIX = "worker"
 
 TAILLOGS_LINES = 60
 
+SCHEMA_CARTOGRAFIA = "cartografia"
+
 def getRedisMonitorURL():
 	database_num = 0
 	return database_num, f"{REDIS_BASE_URL}/{database_num}"
@@ -20,11 +22,11 @@ def getRedisWorkerURL():
 	database_num = 0
 	return database_num, f"{REDIS_BASE_URL}/{database_num}"	
 
+def getDXFOutPath():
+	ret = path_join(dirname(abspath(__file__)), "tmp_dxfoutput")
+	if not exists(ret):
+		makedirs(ret)
+	return ret
 
-# def getXXXX_CSVDir():
-# 	ret = path_join(dirname(abspath(__file__)), "stcp_csv")
-# 	if not exists(ret):
-# 		makedirs(ret)
-# 	return ret
 
 
